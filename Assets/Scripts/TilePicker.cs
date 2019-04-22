@@ -33,6 +33,11 @@ public class TilePicker : MonoBehaviour
 			}
 		}
 
+		if(tiles.Count == 0)
+		{
+			return TileType.Desert;
+		}
+
 		var pickTile = tiles[rnd.Next(tiles.Count)];
 		counts[(int)pickTile]--;
 

@@ -14,14 +14,21 @@ public class TileSetter : MonoBehaviour
 		var map = GetComponent<Tilemap>();
 		picker.Reset();
 
-		var hList = new[] { 3, 4, 5, 4, 3 };
 		var swapPos = new Vector3Int(0, 0, 0);
 		const int size = 5;
-		for (var y = 0; y < size; y++)
+		for(var x = 0; x < size;x++)
 		{
-			for (var i = 0; i < hList[y]; i++)
+			for (var y = 0; y < size; y++)
 			{
-				var pos = new Vector3Int(i - hList[y] / 2, y - size / 2, 0);
+				var pos = new Vector3Int(x - size / 2, y - size / 2, 0);
+
+				if (pos.x == 2 && pos.y != 0
+					|| Math.Abs(pos.x) == 2 && Math.Abs(pos.y) == 2)
+				{
+					continue;
+				}
+				Debug.Log(pos);
+
 				var tile = picker.Pick();
 
 				map.SetTile(pos, tiles[(int)tile]);

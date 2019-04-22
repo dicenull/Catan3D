@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +12,7 @@ public class TestCubeSetter : MonoBehaviour
 	private void Awake()
 	{
 		var vecs = map.GetVertices(new Vector3Int(0, 0, 0));
+		
 
 		foreach(var vec in vecs)
 		{
