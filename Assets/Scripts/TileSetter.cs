@@ -15,28 +15,15 @@ public class TileSetter : MonoBehaviour
 		picker.Reset();
 
 		var swapPos = new Vector3Int(0, 0, 0);
-		const int size = 5;
-		for(var x = 0; x < size;x++)
+		foreach (var pos in FieldUtil.GetPositions())
 		{
-			for (var y = 0; y < size; y++)
+			var tile = picker.Pick();
+
+			map.SetTile(pos, tiles[(int)tile]);
+
+			if (tile == TileType.Desert)
 			{
-				var pos = new Vector3Int(x - size / 2, y - size / 2, 0);
-
-				if (pos.x == 2 && pos.y != 0
-					|| Math.Abs(pos.x) == 2 && Math.Abs(pos.y) == 2)
-				{
-					continue;
-				}
-				Debug.Log(pos);
-
-				var tile = picker.Pick();
-
-				map.SetTile(pos, tiles[(int)tile]);
-
-				if(tile == TileType.Desert)
-				{
-					swapPos = pos;
-				}
+				swapPos = pos;
 			}
 		}
 

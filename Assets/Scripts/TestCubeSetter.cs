@@ -11,10 +11,17 @@ public class TestCubeSetter : MonoBehaviour
 
 	private void Awake()
 	{
-		var vecs = map.GetVertices(new Vector3Int(0, 0, 0));
-		
+		HashSet<Vector3> vecList = new HashSet<Vector3>();
 
-		foreach(var vec in vecs)
+		foreach(var pos in FieldUtil.GetPositions())
+		{
+			foreach(var vec in map.GetVertices(pos))
+			{
+				vecList.Add(vec);
+			}
+		}
+		
+		foreach(var vec in vecList)
 		{
 			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			cube.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
