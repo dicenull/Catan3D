@@ -20,12 +20,18 @@ public class TestCubeSetter : MonoBehaviour
 				vecList.Add(vec);
 			}
 		}
-		
+
+		var index = 0;
 		foreach(var vec in vecList)
 		{
 			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			cube.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-			cube.transform.position = vec;
+			cube.transform.SetParent(transform);
+			cube.transform.localScale = 0.2f * Vector3.one;
+			cube.transform.position = new Vector3(vec.x, vec.z, vec.y);
+			cube.name = $"{index}";
+
+			index++;
 		}
+		
 	}
 }

@@ -9,6 +9,13 @@ public static class TileExtend
     public static IEnumerable<Vector3> GetVertices(this Tilemap map, Vector3Int position)
 	{
 		var center = map.GetCellCenterWorld(position);
+		
+		// xz => xy形式に直す
+		if(map.orientation == Tilemap.Orientation.XZ)
+		{
+			center.y = center.z;
+			center.z = 0;
+		}
 
 		var size = map.cellSize / 2;
 
@@ -19,6 +26,7 @@ public static class TileExtend
 			new Vector3(0, size.y),
 			new Vector3(-size.x, size.y * Mathf.Sin(Mathf.PI / 6f))
 		}.ToList();
+
 		
 		// 下半分を追加
 		for(int i = 0;i < 3;i++)
