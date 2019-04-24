@@ -24,8 +24,7 @@ public class TestCubeSetter : MonoBehaviour
 		var index = 0;
 		foreach(var vec in vecList)
 		{
-			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			cube.transform.SetParent(transform);
+			var cube = Instantiate(Resources.Load<GameObject>("Prefabs/Village"), transform);
 			cube.transform.localScale = 0.2f * Vector3.one;
 			cube.transform.position = new Vector3(vec.x, vec.z, vec.y);
 			cube.name = $"{index}";
